@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Objects;
 
 /**
@@ -118,12 +119,15 @@ public class Inventory implements Iterable<ItemStack>, Cloneable
      *
      * @return matching stack if one was found and `null` otherwise
      */
-    public ItemStack findMatchingItemStack(ItemStack key)
-    {
-        // Adapt the logic from Assignment 1
-
+    public ItemStack findMatchingItemStack(ItemStack key) {
+        for (ItemStack stack : this.slots) {
+            if (stack != null && stack.getItem().equals(key.getItem())) {
+                return stack; 
+            }
+        }
         return null;
     }
+    
 
     /**
      * This is the standard Linked List append operation from Review 01
